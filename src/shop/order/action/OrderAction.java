@@ -10,6 +10,7 @@ import shop.order.service.OrderService;
 import shop.order.vo.Order;
 import shop.order.vo.OrderItem;
 import shop.user.vo.User;
+import shop.utils.PageBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -34,6 +35,13 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
+	}
+	
+	// 接收page参数：
+	private Integer page;
+
+	public void setPage(Integer page) {
+		this.page = page;
 	}
 
 	// 生成订单的方法
@@ -71,4 +79,19 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 		// 通过值栈的方式显示：
 		return "saveSuccess";
 	}
+	
+	// 我的订单的查询
+	public String findByUid() {
+		// 根据用户的ID查询
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existUser");
+		PageBean<Order> pageBean = orderService.findByPageUid(user.getUid(), page);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
