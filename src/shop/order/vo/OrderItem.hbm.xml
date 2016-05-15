@@ -16,6 +16,6 @@
 		<many-to-one name="order" class="shop.order.vo.Order" column="oid"></many-to-one>
 
 		<!-- 关联关系：与产品 -->
-		<many-to-one name="product" class="shop.product.vo.Product" column="pid"></many-to-one>
+		<many-to-one name="product" lazy="false" class="shop.product.vo.Product" column="pid"></many-to-one>
 	</class>
 </hibernate-mapping>
