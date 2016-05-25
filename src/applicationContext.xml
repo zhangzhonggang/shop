@@ -105,6 +105,12 @@
 		<property name="categoryService" ref="categoryService"></property>
 	</bean>
 	
+	<!-- 后台二级分类管理的Action -->
+	<bean id="adminCategorySecondAction" class="shop.categorysecond.adminaction.AdminCategorySecondAction" scope="prototype">
+		<property name="categorySecondService" ref="categorySecondService"></property>
+		<property name="categoryService" ref="categoryService"></property>
+	</bean>
+	
 	<!-- Service的配置>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 	<bean id="userService" class="shop.user.service.UserService">
 		<property name="userDao" ref="userDao"></property>
@@ -127,6 +133,11 @@
 		<property name="adminUserDao" ref="adminUserDao"></property>
 	</bean>
 	
+	<!-- 二级分类的Service -->
+	<bean id="categorySecondService" class="shop.categorysecond.service.CategorySecondService">
+		<property name="categorySecondDao" ref="categorySecondDao"></property>
+	</bean>
+	
 	<!-- Dao的配置>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 	<bean id="userDao" class="shop.user.dao.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -146,6 +157,11 @@
 	
 	<!-- 后台登录的Dao -->
 	<bean id="adminUserDao" class="shop.adminuser.dao.AdminUserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 二级分类的Dao -->
+	<bean id="categorySecondDao" class="shop.categorysecond.dao.CategorySecondDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

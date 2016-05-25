@@ -12,7 +12,7 @@
 		<property name="cname"></property>
 		
 		<!-- 配置二级分类的集合 -->
-		<set order-by="csid" name="categorySeconds" lazy="false">
+		<set order-by="csid" cascade="delete" name="categorySeconds" lazy="false">
 			<key column="cid"></key>
 			<one-to-many class="shop.categorysecond.vo.CategorySecond" />
 		</set>
