@@ -7,8 +7,8 @@
 		<link href="${pageContext.request.contextPath}/css/Style1.css" rel="stylesheet" type="text/css" />
 		<script language="javascript" src="${pageContext.request.contextPath}/js/public.js"></script>
 		<script type="text/javascript">
-			function addCategorySecond(){
-				window.location.href = "${pageContext.request.contextPath}/adminCategorySecond_addPage.action";
+			function addProduct(){
+				window.location.href = "${pageContext.request.contextPath}/adminProduct_addPage.action";
 			}
 		</script>
 	</HEAD>
@@ -24,7 +24,7 @@
 					</tr>
 					<tr>
 						<td class="ta_01" align="right">
-							<button type="button" id="add" name="add" value="添加" class="button_add" onclick="addCategorySecond()">
+							<button type="button" id="add" name="add" value="添加" class="button_add" onclick="addProduct()">
 &#28155;&#21152;
 </button>
 
