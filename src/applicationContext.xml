@@ -111,6 +111,11 @@
 		<property name="categoryService" ref="categoryService"></property>
 	</bean>
 	
+	<!-- 后台商品管理的Action -->
+	<bean id="adminProductAction" class="shop.product.adminaction.AdminProductAction" scope="prototype">
+		<property name="productService" ref="productService"></property>
+	</bean>
+	
 	<!-- Service的配置>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 	<bean id="userService" class="shop.user.service.UserService">
 		<property name="userDao" ref="userDao"></property>

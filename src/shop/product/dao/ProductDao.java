@@ -88,4 +88,24 @@ public class ProductDao extends HibernateDaoSupport {
 		}
 		return null;
 	}
+
+	// DAO层查询商品总数的方法
+	public int findCount() {
+		String hql = "select count(*) from Product";
+		List<Long> list = this.getHibernateTemplate().find(hql);
+		if (list != null && list.size() > 0) {
+			return list.get(0).intValue();
+		}
+		return 0;
+	}
+
+	// DAO层带分页查询商品的方法
+	public List<Product> findByPage(int begin, int limit) {
+		String hql = "from Product order by pdate desc";
+		List<Product> list = this.getHibernateTemplate().execute(new PageHibernateCallback<Product>(hql, null, begin, limit));
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
+	}
 }
