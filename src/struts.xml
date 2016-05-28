@@ -82,6 +82,7 @@
 			<result name="findAll">/admin/product/list.jsp</result>
 			<result name="addPageSuccess">/admin/product/add.jsp</result>
 			<result name="saveSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
+			<result name="deleteSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
 		</action>
 	</package>
 </struts>

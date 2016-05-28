@@ -127,4 +127,9 @@ public class ProductService {
 		productDao.save(product);
 	}
 
+	// 业务层删除商品的方法
+	public void delete(Product product) {
+		productDao.delete(product);
+	}
+
 }
