@@ -50,4 +50,24 @@ public class OrderDao extends HibernateDaoSupport {
 		this.getHibernateTemplate().update(currOrder);
 	}
 
+	// DAO层统计订单总数的方法
+	public int findByCount() {
+		String hql = "select count(*) from Order";
+		List<Long> list = this.getHibernateTemplate().find(hql);
+		if (list != null && list.size() > 0) {
+			return list.get(0).intValue();
+		}
+		return 0;
+	}
+
+	// DAO层的带分页查询的方法
+	public List<Order> findByPage(int begin, int limit) {
+		String hql = "from Order order by ordertime desc";
+		List<Order> list = this.getHibernateTemplate().execute(new PageHibernateCallback<Order>(hql, null, begin, limit));
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
+	}
+
 }

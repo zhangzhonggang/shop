@@ -32,6 +32,8 @@
 		d.add('010301','0103','二级分类管理','${pageContext.request.contextPath}/adminCategorySecond_findAll.action?page=1','','mainFrame');
 		d.add('0104','01','商品管理');
 		d.add('010401','0104','商品管理','${pageContext.request.contextPath}/adminProduct_findAll.action?page=1','','mainFrame');
+		d.add('0105','01','订单管理');
+		d.add('010501','0105','订单管理','${pageContext.request.contextPath}/adminOrder_findAll.action?page=1','','mainFrame');
 		document.write(d);
 		
 	</script>
