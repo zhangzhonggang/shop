@@ -127,4 +127,39 @@ public class AdminProductAction extends ActionSupport implements
 
 		return "deleteSuccess";
 	}
+
+	// 编辑商品的方法
+	public String edit() {
+		// 根据商品的ID查询商品
+		product = productService.findByPid(product.getPid());
+		// 查询所有的二级分类的集合
+		List<CategorySecond> csList = categorySecondService.findAll();
+		// 将数据保存到值栈
+		ActionContext.getContext().getValueStack().set("csList", csList);
+		// 页面跳转
+		return "editSuccess";
+	}
+
+	// 修改商品的方法
+	public String update() throws IOException {
+		product.setPdate(new Date());
+		// 文件上传
+		if (upload != null) {
+			// 删除原来上传的商品图片
+			String path = product.getImage();
+			File file = new File(ServletActionContext.getServletContext()
+					.getRealPath("/" + path));
+			file.delete();
+
+			// 获得文件上传磁盘的绝对路径
+			String realPath = ServletActionContext.getServletContext()
+					.getRealPath("/products");
+			File diskFile = new File(realPath + "//" + uploadFileName);
+			FileUtils.copyFile(upload, diskFile);
+			product.setImage("products/" + uploadFileName);
+		}
+		// 修改商品的数据到数据库
+		productService.update(product);
+		return "updateSuccess";
+	}
 }
