@@ -61,4 +61,15 @@ public class AdminOrderAction extends ActionSupport implements
 		ActionContext.getContext().getValueStack().set("list", list);
 		return "findOrderItem";
 	}
+	
+	// 修改订单状态的方法
+	public String updateState() {
+		// 1.根据订单ID查询订单
+		Order currOrder = orderService.findByOid(order.getOid());
+		// 2.修改订单状态
+		currOrder.setState(3);
+		orderService.update(currOrder);
+		// 3.页面跳转
+		return "updateStateSuccess";
+	}
 }

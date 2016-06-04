@@ -91,6 +91,7 @@
 		<action name="adminOrder_*" class="adminOrderAction" method="{1}">
 			<result name="findAll">/admin/order/list.jsp</result>
 			<result name="findOrderItem">/admin/order/orderItem.jsp</result>
+			<result name="updateStateSuccess" type="redirectAction">adminOrder_findAll.action?page=1</result>
 		</action>
 	</package>
 </struts>
