@@ -58,7 +58,7 @@
 								已付款，未发货
 							</s:if>
 							<s:if test="#order.state == 3">
-								<a href="#"><font color="red">已发货，未签收</font></a>
+								<a href="${pageContext.request.contextPath }/order_updateState.action?oid=<s:property value="#order.oid"/>"><font color="red">已发货，未签收</font></a>
 							</s:if>
 							<s:if test="#order.state == 4">
 								交易完成

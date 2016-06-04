@@ -21,7 +21,7 @@
 		<many-to-one name="user" lazy="false" class="shop.user.vo.User" column="uid"></many-to-one>
 		
 		<!-- 关联关系：与订单项 -->
-		<set name="orderItems" lazy="false" cascade="save-update">
+		<set name="orderItems" order-by="itemid" lazy="false" cascade="save-update">
 			<key column="oid"></key>
 			<one-to-many class="shop.order.vo.OrderItem" />
 		</set>
