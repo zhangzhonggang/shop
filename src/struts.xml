@@ -7,9 +7,14 @@
 	<constant name="struts.devMode" value="false"></constant>
 	
 	<package name="shop" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="PrivilegeInterceptor" class="shop.interceptor.PrivilegeInterceptor"></interceptor>
+		</interceptors>
+		
 		<global-results>
 			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
 			<result name="login">/WEB-INF/jsp/login.jsp</result>
+			<result name="loginFail">/admin/index.jsp</result>
 		</global-results>
 		
 		<!-- 配置访问首页的Action -->
@@ -66,6 +71,10 @@
 			<result name="deleteSuccess" type="redirectAction">adminCategory_findAll.action</result>
 			<result name="editSuccess">/admin/category/edit.jsp</result>
 			<result name="updateSuccess" type="redirectAction">adminCategory_findAll.action</result>
+			
+			<interceptor-ref name="PrivilegeInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
 		</action>
 		
 		<!-- 后台二级分类管理的Action -->
@@ -76,6 +85,9 @@
 			<result name="deleteSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
 			<result name="editSuccess">/admin/categorysecond/edit.jsp</result>
 			<result name="updateSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+			
+			<interceptor-ref name="PrivilegeInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		
 		<!-- 配置后台商品管理的Action -->
@@ -86,6 +98,9 @@
 			<result name="deleteSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
 			<result name="editSuccess">/admin/product/edit.jsp</result>
 			<result name="updateSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
+			
+			<interceptor-ref name="PrivilegeInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		
 		<!-- 配置后台订单管理的Action -->
@@ -93,6 +108,9 @@
 			<result name="findAll">/admin/order/list.jsp</result>
 			<result name="findOrderItem">/admin/order/orderItem.jsp</result>
 			<result name="updateStateSuccess" type="redirectAction">adminOrder_findAll.action?page=1</result>
+			
+			<interceptor-ref name="PrivilegeInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 	</package>
 </struts>
