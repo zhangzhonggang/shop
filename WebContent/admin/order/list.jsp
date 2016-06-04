@@ -7,8 +7,52 @@
 		<link href="${pageContext.request.contextPath}/css/Style1.css" rel="stylesheet" type="text/css" />
 		<script language="javascript" src="${pageContext.request.contextPath}/js/public.js"></script>
 		<script type="text/javascript">
-			function addProduct(){
-				window.location.href = "${pageContext.request.contextPath}/adminProduct_addPage.action";
+			function showDetial(oid){
+				// 获得按钮对象
+				var but = document.getElementById("but"+oid);
+				// 获得div对象：
+				var div1 = document.getElementById("div"+oid);
+				if (but.value == "订单详情") {
+					// 1.创建异步加载对象
+					var xhr = createXmlHttp();
+					// 2.设置监听
+					xhr.onreadystatechange = function () {
+						if (xhr.readyState == 4) {
+							if (xhr.status == 200) {
+								
+								div1.innerHTML = xhr.responseText;
+							}
+						}
+					};
+					// 3.打开链接
+					xhr.open("GET", "${pageContext.request.contextPath}/adminOrder_findOrderItem.action?time="+new Date().getTime()+"&oid="+oid, true);
+					// 4.发送
+					xhr.send(null);
+					but.value = "关闭";
+				} else {
+					div1.innerHTML = "";
+					but.value="订单详情";
+				}
+				
+			}
+			function createXmlHttp(){
+				var xmlHttp;
+				try{ // Firefox, Opera 8.0+, Safari
+					xmlHttp=new XMLHttpRequest();
+				}
+				catch (e){
+					try{// Internet Explorer
+						 xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+					}
+					catch (e){
+						try{
+							xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+						}
+						catch (e){}
+					}
+				}
+
+				return xmlHttp;
 			}
 		</script>
 	</HEAD>
@@ -16,7 +60,7 @@
 		<br>
 		<form id="Form1" name="Form1" action="${pageContext.request.contextPath}/user/list.jsp" method="post">
 			<table cellSpacing="1" cellPadding="0" width="100%" align="center" bgColor="#f5fafe" border="0">
-				<TBODY>
+				<TBODY> 
 					<tr>
 						<td class="ta_01" align="center" bgColor="#afd1f3">
 							<strong>订单列表</strong>
@@ -30,22 +74,22 @@
 								<tr
 									style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; HEIGHT: 25px; BACKGROUND-COLOR: #afd1f3">
 
-									<td align="center" width="18%">
+									<td align="center" width="7%">
 										序号
 									</td>
-									<td align="center" width="17%">
+									<td align="center" width="10%">
 										订单编号
 									</td>
-									<td align="center" width="17%">
+									<td align="center" width="10%">
 										总金额
 									</td>
-									<td align="center" width="17%">
+									<td align="center" width="10%">
 										收货人
 									</td>
-									<td align="center" width="17%">
+									<td align="center" width="10%">
 										订单状态
 									</td>
-									<td width="7%" align="center">
+									<td width="*" align="center">
 										订单详情
 									</td>
 								</tr>
@@ -84,7 +128,8 @@
 												</s:if>
 											</td>
 											<td align="center" style="HEIGHT: 22px">
-												<input type="button" value="订单详情">
+												<input type="button" value="订单详情" id="but<s:property value="#order.oid"/>" onclick="showDetial(<s:property value="#order.oid"/>)"/>
+												<div id="div<s:property value="#order.oid"/>"></div>
 											</td>
 									
 										</tr>

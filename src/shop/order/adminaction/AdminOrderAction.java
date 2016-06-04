@@ -1,7 +1,12 @@
 package shop.order.adminaction;
 
+import java.util.List;
+
+import org.hibernate.ejb.criteria.OrderImpl;
+
 import shop.order.service.OrderService;
 import shop.order.vo.Order;
+import shop.order.vo.OrderItem;
 import shop.utils.PageBean;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -46,5 +51,14 @@ public class AdminOrderAction extends ActionSupport implements
 		ActionContext.getContext().getValueStack().set("pageBean", pageBean);
 		// 页面跳转
 		return "findAll";
+	}
+	
+	// 根据订单ID查询订单项
+	public String findOrderItem() {
+		// 根据订单ID查询订单项
+		List<OrderItem> list = orderService.findOrderItem(order.getOid());
+		// 通过值栈显示到页面上
+		ActionContext.getContext().getValueStack().set("list", list);
+		return "findOrderItem";
 	}
 }

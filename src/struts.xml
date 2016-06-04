@@ -90,6 +90,7 @@
 		<!-- 配置后台订单管理的Action -->
 		<action name="adminOrder_*" class="adminOrderAction" method="{1}">
 			<result name="findAll">/admin/order/list.jsp</result>
+			<result name="findOrderItem">/admin/order/orderItem.jsp</result>
 		</action>
 	</package>
 </struts>
